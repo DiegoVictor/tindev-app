@@ -46,8 +46,7 @@
     "metro-react-native-babel-preset": "^0.54.1",
     "mock-async-storage": "^2.2.0",
     "prettier": "^1.18.2",
-    "react-test-renderer": "16.9.0",
-    "reactotron-react-native": "^4.0.2"
+    "react-test-renderer": "16.9.0"
   },
   "jest": {
     "preset": "@testing-library/react-native",
