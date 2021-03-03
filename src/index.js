@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Navigation from '~/routes';
+import Routes from '~/routes';
 
 
 export default () => {
-  return <Navigation />;
+  return <Routes />;
 };
