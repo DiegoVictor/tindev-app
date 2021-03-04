@@ -3,6 +3,7 @@ import { Platform, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Logo from '~/assets/logo.png';
+import api, { setAuthorization } from '~/services/api';
 import { UserContext } from '~/contexts/User';
 import { Container, Input, Button, Text } from './styles';
 
@@ -10,17 +11,7 @@ export default () => {
   const [developer, setDeveloper] = useState('');
   const { setUser } = useContext(UserContext);
 
-  useEffect(() => {
-    (async () => {
-      const user = JSON.parse(await AsyncStorage.getItem('tindev_user'));
-
-      if (user) {
-        navigation.navigate('Main', user);
-      }
-    })();
-  }, [navigation]);
-
-  async function handleLogin() {
+  const handleLogin = useCallback(async () => {
     const { data } = await api.post('developers', { username: developer });
 
     await AsyncStorage.setItem(
@@ -30,8 +21,13 @@ export default () => {
         token: data.token,
       })
     );
-    navigation.navigate('Main');
-  }
+
+    setUser({
+      id: data.developer._id,
+      token: data.token,
+    });
+    setAuthorization(data.token);
+  }, [developer, setUser]);
 
   return (
     <Container behavior="padding" enabled={Platform.OS === 'ios'}>
