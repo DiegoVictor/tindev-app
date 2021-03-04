@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { Platform, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Logo from '~/assets/logo.png';
-import api from '~/services/api';
+import { UserContext } from '~/contexts/User';
 import { Container, Input, Button, Text } from './styles';
 
 export default () => {
   const [developer, setDeveloper] = useState('');
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
     (async () => {
