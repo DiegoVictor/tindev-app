@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Platform, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import PropTypes from 'prop-types';
 
 import Logo from '~/assets/logo.png';
 import api from '~/services/api';
 import { Container, Input, Button, Text } from './styles';
 
-export default function Login({ navigation }) {
+export default () => {
   const [developer, setDeveloper] = useState('');
 
   useEffect(() => {
@@ -49,11 +48,4 @@ export default function Login({ navigation }) {
       </Button>
     </Container>
   );
-}
-
-Login.propTypes = {
-  navigation: PropTypes.shape({
-    getParam: PropTypes.func.isRequired,
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
 };
