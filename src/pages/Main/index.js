@@ -48,31 +48,17 @@ export default () => {
     });
   }, [developerId]);
 
-  async function handleLike() {
-    const { token } = JSON.parse(await AsyncStorage.getItem('tindev_user'));
+  const handleLike = useCallback(async () => {
     const [dev, ...rest] = developers;
-    await api.post(
-      `developers/${dev._id}/like`,
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    await api.post(`developers/${dev._id}/like`);
     setDevelopers(rest);
-  }
+  }, [developers]);
 
-  async function handleDislike() {
-    const { token } = JSON.parse(await AsyncStorage.getItem('tindev_user'));
+  const handleDislike = useCallback(async () => {
     const [dev, ...rest] = developers;
-    await api.post(
-      `developers/${dev._id}/dislike`,
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
+    await api.post(`developers/${dev._id}/dislike`);
     setDevelopers(rest);
-  }
+  }, [developers]);
 
   async function handleLogout() {
     await AsyncStorage.clear();
