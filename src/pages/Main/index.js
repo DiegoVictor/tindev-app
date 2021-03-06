@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -22,10 +22,15 @@ import {
   Button,
 } from './styles';
 import { disconnect, connect, subscribe } from '~/services/socket';
+import { UserContext } from '~/contexts/User';
 
 export default () => {
   const [developers, setDevelopers] = useState([]);
   const [developer, setDeveloper] = useState(null);
+  const {
+    user: { id: developerId },
+    setUser,
+  } = useContext(UserContext);
 
   useEffect(() => {
     (async () => {
