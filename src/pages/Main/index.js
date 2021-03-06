@@ -34,10 +34,7 @@ export default () => {
 
   useEffect(() => {
     (async () => {
-      const { token } = JSON.parse(await AsyncStorage.getItem('tindev_user'));
-      const { data } = await api.get('developers', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const { data } = await api.get('developers');
 
       setDevelopers(data);
     })();
