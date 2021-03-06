@@ -111,7 +111,7 @@ export default () => {
             </Developer>
           ))
         ) : (
-          <Empty>Sem sugestões no momento :(</Empty>
+          <Empty>Sem sugestões no momento</Empty>
         )}
       </Cards>
 
