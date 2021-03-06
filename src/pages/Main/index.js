@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import PropTypes from 'prop-types';
 
 import api from '~/services/api';
 import Logo from '~/assets/logo.png';
@@ -24,7 +23,7 @@ import {
 } from './styles';
 import { disconnect, connect, subscribe } from '~/services/socket';
 
-export default function Main({ navigation }) {
+export default () => {
   const [developers, setDevelopers] = useState([]);
   const [developer, setDeveloper] = useState(null);
 
@@ -131,14 +130,4 @@ export default function Main({ navigation }) {
       )}
     </Container>
   );
-}
-
-Main.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-};
-
-Main.navigationOptions = {
-  title: 'Developers',
 };
