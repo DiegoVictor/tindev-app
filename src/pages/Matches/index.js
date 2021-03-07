@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import PropTypes from 'prop-types';
 
 import Logo from '~/assets/logo.png';
 import Match from '~/components/Match';
@@ -20,7 +19,7 @@ import {
 } from './styles';
 import { disconnect, connect, subscribe } from '~/services/socket';
 
-export default function Matches({ navigation }) {
+export default () => {
   const [matches, setMatches] = useState([]);
   const [refreshing, setRefreshing] = useState(true);
   const [developer, setDeveloper] = useState(null);
@@ -102,10 +101,4 @@ export default function Matches({ navigation }) {
       )}
     </Container>
   );
-}
-
-Matches.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
 };
