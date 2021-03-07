@@ -26,17 +26,11 @@ export default () => {
   const [developer, setDeveloper] = useState(null);
   const { id: developerId, setUser } = useContext(UserContext);
 
-  const handleRefresh = useCallback(() => {
-    (async () => {
-      const { token } = JSON.parse(await AsyncStorage.getItem('tindev_user'));
-      const { data } = await api.get('matches', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setMatches(data);
-      setRefreshing(false);
-    })();
+  const handleRefresh = useCallback(async () => {
+    const { data } = await api.get('matches');
+
+    setMatches(data);
+    setRefreshing(false);
   }, []);
 
   useEffect(() => {
