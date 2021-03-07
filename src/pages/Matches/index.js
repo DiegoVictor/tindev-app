@@ -45,10 +45,10 @@ export default () => {
     });
   }, [developerId]);
 
-  async function handleLogout() {
+  const handleLogout = useCallback(async () => {
     await AsyncStorage.clear();
-    navigation.navigate('Login');
-  }
+    setUser({});
+  }, [setUser]);
 
   return (
     <Container>
