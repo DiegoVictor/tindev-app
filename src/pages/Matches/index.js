@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import Logo from '~/assets/logo.png';
 import Match from '~/components/Match';
 import api from '~/services/api';
+import { UserContext } from '~/contexts/User';
 import {
   Container,
   Brand,
@@ -23,6 +24,7 @@ export default () => {
   const [matches, setMatches] = useState([]);
   const [refreshing, setRefreshing] = useState(true);
   const [developer, setDeveloper] = useState(null);
+  const { id: developerId, setUser } = useContext(UserContext);
 
   const handleRefresh = useCallback(() => {
     (async () => {
