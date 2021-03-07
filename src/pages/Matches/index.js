@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Logo from '~/assets/logo.png';
 import Match from '~/components/Match';
 import api from '~/services/api';
+import { disconnect, connect, subscribe } from '~/services/socket';
 import { UserContext } from '~/contexts/User';
 import {
   Container,
@@ -18,7 +19,6 @@ import {
   Text,
   Empty,
 } from './styles';
-import { disconnect, connect, subscribe } from '~/services/socket';
 
 export default () => {
   const [matches, setMatches] = useState([]);
