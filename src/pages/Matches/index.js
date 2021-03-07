@@ -38,18 +38,12 @@ export default () => {
   }, [handleRefresh]);
 
   useEffect(() => {
-    (async () => {
-      const { id: developer_id } = JSON.parse(
-        await AsyncStorage.getItem('tindev_user')
-      );
-
-      disconnect();
-      connect({ developer_id });
-      subscribe('match', dev => {
-        setDeveloper(dev);
-      });
-    })();
-  }, []);
+    disconnect();
+    connect({ developer_id: developerId });
+    subscribe('match', dev => {
+      setDeveloper(dev);
+    });
+  }, [developerId]);
 
   async function handleLogout() {
     await AsyncStorage.clear();
