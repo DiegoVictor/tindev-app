@@ -6,19 +6,27 @@ import MockAdapter from 'axios-mock-adapter';
 
 import api from '~/services/api';
 import Login from '~/pages/Login';
-
-const id = faker.random.number();
-const token = faker.random.uuid();
-const api_mock = new MockAdapter(api);
+import { UserContext } from '~/contexts/User';
 
 describe('Login page', () => {
+  const apiMock = new MockAdapter(api);
+
   it('should be able to login', async () => {
-    const navigate = jest.fn();
+    const setUser = jest.fn();
     const { getByTestId, getByPlaceholderText } = render(
-      <Login navigation={{ navigate, getParam: jest.fn() }} />
+      <UserContext.Provider
+        value={{
+          setUser,
+        }}
+      >
+        <Login />
+      </UserContext.Provider>
     );
 
-    api_mock.onPost('developers').reply(200, { developer: { _id: id }, token });
+    const id = faker.random.number();
+    const token = faker.random.uuid();
+
+    apiMock.onPost('developers').reply(200, { developer: { _id: id }, token });
 
     fireEvent.changeText(
       getByPlaceholderText('Digite seu usuáro no Github'),
@@ -30,17 +38,6 @@ describe('Login page', () => {
     expect(await AsyncStorage.getItem('tindev_user')).toBe(
       JSON.stringify({ id, token })
     );
-    expect(navigate).toHaveBeenCalledWith('Main');
-  });
-
-  it('should be able to already be logged in', async () => {
-    const navigate = jest.fn();
-    await AsyncStorage.setItem('tindev_user', JSON.stringify({ id, token }));
-
-    await wait(() =>
-      render(<Login navigation={{ navigate, getParam: jest.fn() }} />)
-    );
-
-    expect(navigate).toHaveBeenCalledWith('Main', { id, token });
+    expect(setUser).toHaveBeenCalledWith({ id, token });
   });
 });
