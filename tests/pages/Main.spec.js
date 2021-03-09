@@ -1,5 +1,5 @@
 import React from 'react';
-import { wait, render, fireEvent } from '@testing-library/react-native';
+import { act, render, fireEvent } from '@testing-library/react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import faker from 'faker';
 import MockAdapter from 'axios-mock-adapter';
@@ -28,7 +28,7 @@ describe('Main page', () => {
       </UserContext.Provider>
     );
 
-    await wait(() => fireEvent.press(getByTestId('logout')));
+    await act(async () => fireEvent.press(getByTestId('logout')));
 
     expect(setUser).toHaveBeenCalledWith({});
   });
@@ -47,7 +47,7 @@ describe('Main page', () => {
 
     const { getByTestId, queryByTestId } = render(<Main />);
 
-    await wait(() => fireEvent.press(getByTestId('like')));
+    await act(async () => fireEvent.press(getByTestId('like')));
 
     expect(queryByTestId(`developer_${developer._id}`)).toBeFalsy();
   });
@@ -68,6 +68,7 @@ describe('Main page', () => {
 
     await wait(() => fireEvent.press(getByTestId('dislike')));
 
+    await act(async () => fireEvent.press(getByTestId('dislike')));
     expect(queryByTestId(`developer_${developer._id}`)).toBeFalsy();
   });
 
@@ -81,7 +82,7 @@ describe('Main page', () => {
 
     const { getByTestId } = render(<Main />);
 
-    await wait(async () => emit(matchDeveloper));
+    await act(async () => emit(matchDeveloper));
 
     expect(getByTestId('match')).toBeTruthy();
   });

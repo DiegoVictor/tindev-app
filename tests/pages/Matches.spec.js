@@ -1,6 +1,6 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { fireEvent, wait, render } from '@testing-library/react-native';
+import { fireEvent, act, render } from '@testing-library/react-native';
 import faker from 'faker';
 import MockAdapter from 'axios-mock-adapter';
 
@@ -28,7 +28,7 @@ describe('Matches page', () => {
       </UserContext.Provider>
     );
 
-    await wait(() => fireEvent.press(getByTestId('logout')));
+    await act(async () => fireEvent.press(getByTestId('logout')));
 
     expect(setUser).toHaveBeenCalledWith({});
   });
@@ -43,7 +43,7 @@ describe('Matches page', () => {
 
     const { getByTestId } = render(<Matches />);
 
-    await wait(async () => emit(matchDeveloper));
+    await act(async () => emit(matchDeveloper));
 
     expect(getByTestId('match')).toBeTruthy();
   });

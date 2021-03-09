@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react-native';
+import { render, fireEvent, act } from '@testing-library/react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import faker from 'faker';
 import MockAdapter from 'axios-mock-adapter';
@@ -33,7 +33,9 @@ describe('Login page', () => {
       faker.internet.userName()
     );
 
-    await wait(() => fireEvent.press(getByTestId('submit')));
+    await act(async () => {
+      fireEvent.press(getByTestId('submit'));
+    });
 
     expect(await AsyncStorage.getItem('tindev_user')).toBe(
       JSON.stringify({ id, token })
