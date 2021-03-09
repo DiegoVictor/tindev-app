@@ -9,6 +9,7 @@ import api from '~/services/api';
 import factory from '../utils/factory';
 import Main from '~/pages/Main';
 import { UserContext } from '~/contexts/User';
+import wait from '../utils/wait';
 
 describe('Main page', () => {
   const apiMock = new MockAdapter(api);
@@ -47,6 +48,10 @@ describe('Main page', () => {
 
     const { getByTestId, queryByTestId } = render(<Main />);
 
+    await wait(async () =>
+      expect(getByTestId(`developer_${developer._id}`)).toBeTruthy()
+    );
+
     await act(async () => fireEvent.press(getByTestId('like')));
 
     expect(queryByTestId(`developer_${developer._id}`)).toBeFalsy();
@@ -66,7 +71,9 @@ describe('Main page', () => {
 
     const { getByTestId, queryByTestId } = render(<Main />);
 
-    await wait(() => fireEvent.press(getByTestId('dislike')));
+    await wait(async () =>
+      expect(getByTestId(`developer_${developer._id}`)).toBeTruthy()
+    );
 
     await act(async () => fireEvent.press(getByTestId('dislike')));
     expect(queryByTestId(`developer_${developer._id}`)).toBeFalsy();
