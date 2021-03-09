@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
-import { SOCKET_URL } from 'react-native-dotenv';
+// eslint-disable-next-line import/no-unresolved
+import { SOCKET_URL } from '@env';
 
 const socket = io(SOCKET_URL, {
   autoConnect: false,
