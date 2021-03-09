@@ -24,11 +24,11 @@ This app version allows users to like or dislike another users and see previous 
 
 # Screenshots
 Click to expand.<br>
-<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/login.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/dashboard.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/match.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/menu.jpg" width="32%" />
-<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/matches.jpg" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/login.png" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/dashboard.png" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/match.png" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/menu.png" width="32%" />
+<img src="https://raw.githubusercontent.com/DiegoVictor/tindev-app/master/screenshots/matches.png" width="32%" />
 
 # Installing
 Easy peasy lemon squeezy:
