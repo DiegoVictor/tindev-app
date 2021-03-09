@@ -24,7 +24,7 @@ describe('Main page', () => {
     apiMock.onGet('developers').reply(200, developers);
 
     const { getByTestId } = render(
-      <UserContext.Provider value={{ setUser }}>
+      <UserContext.Provider value={{ user: { id }, setUser }}>
         <Main />
       </UserContext.Provider>
     );
@@ -46,7 +46,11 @@ describe('Main page', () => {
       .onPost(`developers/${developer._id}/like`)
       .reply(200);
 
-    const { getByTestId, queryByTestId } = render(<Main />);
+    const { getByTestId, queryByTestId } = render(
+      <UserContext.Provider value={{ user: { id }, setUser: jest.fn() }}>
+        <Main />
+      </UserContext.Provider>
+    );
 
     await wait(async () =>
       expect(getByTestId(`developer_${developer._id}`)).toBeTruthy()
@@ -69,7 +73,11 @@ describe('Main page', () => {
       .onPost(`developers/${developer._id}/dislike`)
       .reply(200);
 
-    const { getByTestId, queryByTestId } = render(<Main />);
+    const { getByTestId, queryByTestId } = render(
+      <UserContext.Provider value={{ user: { id }, setUser: jest.fn() }}>
+        <Main />
+      </UserContext.Provider>
+    );
 
     await wait(async () =>
       expect(getByTestId(`developer_${developer._id}`)).toBeTruthy()
@@ -87,7 +95,11 @@ describe('Main page', () => {
     AsyncStorage.setItem('tindev_user', JSON.stringify({ id, token }));
     apiMock.onGet('developers').reply(200, []);
 
-    const { getByTestId } = render(<Main />);
+    const { getByTestId } = render(
+      <UserContext.Provider value={{ user: { id }, setUser: jest.fn() }}>
+        <Main />
+      </UserContext.Provider>
+    );
 
     await act(async () => emit(matchDeveloper));
 
