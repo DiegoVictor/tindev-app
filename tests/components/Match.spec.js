@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
-import factory from '../utils/factories';
+import factory from '../utils/factory';
 import Match from '~/components/Match';
 
 describe('Match component', () => {
