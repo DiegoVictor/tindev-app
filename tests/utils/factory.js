@@ -5,7 +5,7 @@ factory.define(
   'Developer',
   {},
   {
-    _id: faker.random.uuid,
+    _id: faker.datatype.uuid,
     name: faker.name.firstName,
     bio: faker.lorem.paragraph,
     avatar: faker.image.imageUrl,

@@ -23,8 +23,8 @@ describe('Login page', () => {
       </UserContext.Provider>
     );
 
-    const id = faker.random.number();
-    const token = faker.random.uuid();
+    const id = faker.datatype.number();
+    const token = faker.datatype.uuid();
 
     apiMock.onPost('developers').reply(200, { developer: { _id: id }, token });
 

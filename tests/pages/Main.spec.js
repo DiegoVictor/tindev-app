@@ -17,8 +17,8 @@ describe('Main page', () => {
   it('should be able to logout', async () => {
     const developers = await factory.attrsMany('Developer', 3);
     const setUser = jest.fn();
-    const id = faker.random.number();
-    const token = faker.random.uuid();
+    const id = faker.datatype.number();
+    const token = faker.datatype.uuid();
 
     AsyncStorage.setItem('tindev_user', JSON.stringify({ id, token }));
     apiMock.onGet('developers').reply(200, developers);
@@ -35,8 +35,8 @@ describe('Main page', () => {
   });
 
   it('should be able to like a developer', async () => {
-    const id = faker.random.number();
-    const token = faker.random.uuid();
+    const id = faker.datatype.number();
+    const token = faker.datatype.uuid();
     const [developer, ...rest] = await factory.attrsMany('Developer', 3);
 
     AsyncStorage.setItem('tindev_user', JSON.stringify({ id, token }));
@@ -62,8 +62,8 @@ describe('Main page', () => {
   });
 
   it('should be able to dislike a developer', async () => {
-    const id = faker.random.number();
-    const token = faker.random.uuid();
+    const id = faker.datatype.number();
+    const token = faker.datatype.uuid();
     const [developer, ...rest] = await factory.attrsMany('Developer', 3);
 
     AsyncStorage.setItem('tindev_user', JSON.stringify({ id, token }));
@@ -88,8 +88,8 @@ describe('Main page', () => {
   });
 
   it('should be able to have a match', async () => {
-    const id = faker.random.number();
-    const token = faker.random.uuid();
+    const id = faker.datatype.number();
+    const token = faker.datatype.uuid();
     const matchDeveloper = await factory.attrs('Developer');
 
     AsyncStorage.setItem('tindev_user', JSON.stringify({ id, token }));
