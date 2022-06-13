@@ -1,7 +1,7 @@
 import React from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { fireEvent, act, render } from '@testing-library/react-native';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import MockAdapter from 'axios-mock-adapter';
 
 import { emit } from '../../mocks/socket.io-client';
