@@ -43,7 +43,7 @@ export default () => {
   useEffect(() => {
     disconnect();
     connect({ developer_id: developerId });
-    subscribe('match', dev => {
+    subscribe('match', (dev) => {
       setDeveloper(dev);
     });
   }, [developerId]);

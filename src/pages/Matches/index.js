@@ -40,7 +40,7 @@ export default () => {
   useEffect(() => {
     disconnect();
     connect({ developer_id: developerId });
-    subscribe('match', dev => {
+    subscribe('match', (dev) => {
       setDeveloper(dev);
     });
   }, [developerId]);
@@ -60,7 +60,7 @@ export default () => {
       {matches.length > 0 ? (
         <Developers
           data={matches}
-          keyExtractor={match => match._id}
+          keyExtractor={(match) => match._id}
           showsHorizontalScrollIndicator={false}
           refreshing={refreshing}
           onRefresh={handleRefresh}
