@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useContext } from 'react';
 import { Platform, Image } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Logo from '~/assets/logo.png';
 import api, { setAuthorization } from '~/services/api';

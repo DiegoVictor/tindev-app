@@ -1,5 +1,5 @@
 import React from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { fireEvent, act, render } from '@testing-library/react-native';
 import { faker } from '@faker-js/faker';
 import MockAdapter from 'axios-mock-adapter';
