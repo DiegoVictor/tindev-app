@@ -1,12 +1,15 @@
 import io from 'socket.io-client';
-// eslint-disable-next-line import/no-unresolved
-import { SOCKET_URL } from '@env';
+import { IDeveloper } from '../components/Match';
 
-const socket = io(SOCKET_URL, {
+interface IQuery {
+  developer_id: string;
+}
+
+const socket = io(process.env.EXPO_SOCKET_URL, {
   autoConnect: false,
 });
 
-export function connect(query) {
+export function connect(query: IQuery) {
   if (typeof query === 'object') {
     socket.io.opts.query = query;
   }
@@ -19,7 +22,10 @@ export function disconnect() {
   }
 }
 
-export function subscribe(event, callback) {
+export function subscribe(
+  event: string,
+  callback: (developer: IDeveloper) => void
+) {
   socket.on(event, callback);
 }
 
