@@ -1,11 +1,13 @@
 {
   "name": "tindev",
   "version": "1.0.0",
-  "private": true,
+  "main": "index.ts",
   "scripts": {
-    "android": "react-native run-android",
-    "start": "react-native start",
-    "test": "jest --runInBand"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "test": "jest"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.17.7",
