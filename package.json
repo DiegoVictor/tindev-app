@@ -29,29 +29,26 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.5.0",
-    "@babel/runtime": "^7.5.0",
-    "@faker-js/faker": "^7.2.0",
-    "@react-native-community/eslint-config": "^3.0.1",
-    "@testing-library/jest-native": "^4.0.1",
-    "@testing-library/react-native": "^9.0.0",
-    "@types/jest": "^27.4.0",
-    "axios-mock-adapter": "^1.17.0",
-    "babel-eslint": "^10.0.3",
-    "babel-plugin-root-import": "^6.6.0",
-    "eslint": "^8.8.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
+    "@faker-js/faker": "^9.9.0",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/factory-girl": "^5.0.12",
+    "@types/jest": "^30.0.0",
+    "@types/react": "~19.1.0",
+    "axios-mock-adapter": "^2.1.0",
+    "babel-jest": "^30.2.0",
     "factory-girl": "^5.0.4",
-    "jest": "^27.5.0",
-    "metro-react-native-babel-preset": "^0.67.0",
-    "mock-async-storage": "^2.2.0",
-    "prettier": "^2.5.1",
-    "react-test-renderer": "^17.0.2"
-  }
+    "jest": "^30.2.0",
+    "react-test-renderer": "19.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9.2"
+  },
+  "overrides": {
+    "@testing-library/react-native": {
+      "react-test-renderer": "19.1.0"
+    }
+  },
+  "private": true
 }
