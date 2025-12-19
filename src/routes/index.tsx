@@ -4,22 +4,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Login from '~/pages/Login';
-import Main from '~/pages/Main';
-import Matches from '~/pages/Matches';
-import { setAuthorization } from '~/services/api';
-import { UserContext } from '~/contexts/User';
+import { IUser, UserContext } from '../contexts/User';
+import { Login } from '../pages/Login';
+import { Main } from '../pages/Main';
+import { Matches } from '../pages/Matches';
+import { setAuthorization } from '../services/api';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const App = () => (
   <Drawer.Navigator
-    drawerType="back"
-    drawerContentOptions={{
-      activeBackgroundColor: '#df4723',
-      activeTintColor: '#FFF',
-      labelStyle: {
+    screenOptions={{
+      drawerType: 'back',
+      drawerActiveTintColor: '#FFF',
+      drawerActiveBackgroundColor: '#df4723',
+      drawerLabelStyle: {
         fontSize: 13,
         fontWeight: 'bold',
         textTransform: 'uppercase',
@@ -31,8 +31,8 @@ const App = () => (
   </Drawer.Navigator>
 );
 
-export default () => {
-  const [user, setUser] = useState({});
+export const Routes = () => {
+  const [user, setUser] = useState<IUser>({});
 
   useEffect(() => {
     AsyncStorage.getItem('tindev_user').then((data) => {
@@ -50,10 +50,12 @@ export default () => {
     <NavigationContainer>
       <UserContext.Provider
         value={{
-          user,
-          setUser: (data) => {
+          ...user,
+          setUser: (data: IUser) => {
             setUser(data);
-            setAuthorization(data.token || '');
+            if (data.token) {
+              setAuthorization(data.token);
+            }
           },
         }}
       >
