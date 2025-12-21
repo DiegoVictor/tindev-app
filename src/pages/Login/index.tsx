@@ -2,12 +2,12 @@ import React, { useState, useCallback, useContext } from 'react';
 import { Platform, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Logo from '~/assets/logo.png';
-import api, { setAuthorization } from '~/services/api';
-import { UserContext } from '~/contexts/User';
+import Logo from '../../assets/logo.png';
+import { api, setAuthorization } from '../../services/api';
+import { UserContext } from '../../contexts/User';
 import { Container, Input, Button, Text } from './styles';
 
-export default () => {
+export const Login = () => {
   const [developer, setDeveloper] = useState('');
   const { setUser } = useContext(UserContext);
 
