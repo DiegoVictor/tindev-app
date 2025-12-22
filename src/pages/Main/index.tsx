@@ -2,11 +2,11 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import api from '~/services/api';
-import Logo from '~/assets/logo.png';
-import Dislike from '~/assets/dislike.png';
-import Like from '~/assets/like.png';
-import Match from '~/components/Match';
+import { api } from '../../services/api';
+import Logo from '../../assets/logo.png';
+import Dislike from '../../assets/dislike.png';
+import Like from '../../assets/like.png';
+import { IDeveloper, Match } from '../../components/Match';
 import {
   Container,
   Brand,
@@ -21,16 +21,13 @@ import {
   Actions,
   Button,
 } from './styles';
-import { disconnect, connect, subscribe } from '~/services/socket';
-import { UserContext } from '~/contexts/User';
+import { disconnect, connect, subscribe } from '../../services/socket';
+import { UserContext } from '../../contexts/User';
 
-export default () => {
-  const [developers, setDevelopers] = useState([]);
-  const [developer, setDeveloper] = useState(null);
-  const {
-    user: { id: developerId },
-    setUser,
-  } = useContext(UserContext);
+export const Main = () => {
+  const [developers, setDevelopers] = useState<IDeveloper[]>([]);
+  const [developer, setDeveloper] = useState<IDeveloper | null>(null);
+  const { id: developerId, setUser } = useContext(UserContext);
 
   useEffect(() => {
     (async () => {
@@ -42,8 +39,11 @@ export default () => {
 
   useEffect(() => {
     disconnect();
-    connect({ developer_id: developerId });
-    subscribe('match', (dev) => {
+    if (developerId) {
+      connect({ developer_id: developerId });
+    }
+
+    subscribe('match', (dev: IDeveloper) => {
       setDeveloper(dev);
     });
   }, [developerId]);
