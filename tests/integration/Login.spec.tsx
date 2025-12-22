@@ -4,18 +4,19 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { faker } from '@faker-js/faker';
 import MockAdapter from 'axios-mock-adapter';
 
-import api from '~/services/api';
-import Login from '~/pages/Login';
-import { UserContext } from '~/contexts/User';
+import { api } from '../../src/services/api';
+import { Login } from '../../src/pages/Login';
+import { UserContext } from '../../src/contexts/User';
+
+const apiMock = new MockAdapter(api);
 
 describe('Login page', () => {
-  const apiMock = new MockAdapter(api);
-
   it('should be able to login', async () => {
     const setUser = jest.fn();
     const { getByTestId, getByPlaceholderText } = render(
       <UserContext.Provider
         value={{
+          user: {},
           setUser,
         }}
       >
@@ -23,14 +24,14 @@ describe('Login page', () => {
       </UserContext.Provider>
     );
 
-    const id = faker.datatype.number();
-    const token = faker.datatype.uuid();
+    const id = faker.number.int();
+    const token = faker.string.uuid();
 
     apiMock.onPost('developers').reply(200, { developer: { _id: id }, token });
 
     fireEvent.changeText(
       getByPlaceholderText('Digite seu usuáro no Github'),
-      faker.internet.userName()
+      faker.internet.username()
     );
 
     await act(async () => {
