@@ -1,6 +1,11 @@
+import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 
-export const Container = styled.SafeAreaView`
+interface IDeveloperProps {
+  index: number;
+}
+
+export const Container = styled(SafeAreaView)`
   align-items: center;
   background-color: #f5f5f5;
   flex: 1;
@@ -26,7 +31,7 @@ export const Cards = styled.View`
   z-index: 1;
 `;
 
-export const Developer = styled.View`
+export const Developer = styled.View<IDeveloperProps>`
   border-color: #dddddd;
   border-radius: 8px;
   border-width: 1px;
@@ -37,7 +42,7 @@ export const Developer = styled.View`
   bottom: 0px;
   left: 0px;
   right: 0px;
-  z-index: ${props => props.index};
+  z-index: ${(props: IDeveloperProps) => props.index};
 `;
 
 export const Avatar = styled.Image`
