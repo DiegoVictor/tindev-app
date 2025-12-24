@@ -1,12 +1,12 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { ListRenderItemInfo, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Logo from '~/assets/logo.png';
-import Match from '~/components/Match';
-import api from '~/services/api';
-import { disconnect, connect, subscribe } from '~/services/socket';
-import { UserContext } from '~/contexts/User';
+import Logo from '../../assets/logo.png';
+import { IDeveloper, Match } from '../../components/Match';
+import { api } from '../../services/api';
+import { disconnect, connect, subscribe } from '../../services/socket';
+import { UserContext } from '../../contexts/User';
 import {
   Container,
   Brand,
@@ -20,51 +20,55 @@ import {
   Empty,
 } from './styles';
 
-export default () => {
+export const Matches = () => {
   const [matches, setMatches] = useState([]);
   const [refreshing, setRefreshing] = useState(true);
-  const [developer, setDeveloper] = useState(null);
-  const { id: developerId, setUser } = useContext(UserContext);
-
-  const handleRefresh = useCallback(async () => {
+  const handleRefresh = async () => {
     const { data } = await api.get('matches');
 
     setMatches(data);
     setRefreshing(false);
-  }, []);
+  };
 
   useEffect(() => {
     handleRefresh();
-  }, [handleRefresh]);
+  }, []);
 
+  const { id: developerId, setUser } = useContext(UserContext);
+  const [developer, setDeveloper] = useState<IDeveloper | null>(null);
   useEffect(() => {
     disconnect();
-    connect({ developer_id: developerId });
+
+    if (developerId) {
+      connect({ developer_id: developerId });
+    }
+
     subscribe('match', (dev) => {
       setDeveloper(dev);
     });
   }, [developerId]);
 
-  const handleLogout = useCallback(async () => {
+  const handleLogout = async () => {
     await AsyncStorage.clear();
     setUser({});
-  }, [setUser]);
+  };
 
   return (
     <Container>
       <TouchableOpacity testID="logout" onPress={handleLogout}>
         <Brand source={Logo} />
       </TouchableOpacity>
+
       <Title>Matches</Title>
 
       {matches.length > 0 ? (
         <Developers
           data={matches}
-          keyExtractor={(match) => match._id}
+          keyExtractor={(match: IDeveloper) => match._id}
           showsHorizontalScrollIndicator={false}
           refreshing={refreshing}
           onRefresh={handleRefresh}
-          renderItem={({ item: match }) => (
+          renderItem={({ item: match }: ListRenderItemInfo<IDeveloper>) => (
             <Developer key={match._id}>
               <View>
                 <Avatar source={{ uri: match.avatar }} />
