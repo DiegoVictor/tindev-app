@@ -1,6 +1,9 @@
 import styled from 'styled-components/native';
+import { FlatList } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { IDeveloper } from '../../components/Match';
 
-export const Container = styled.SafeAreaView`
+export const Container = styled(SafeAreaView)`
   align-items: center;
   background-color: #f5f5f5;
   flex: 1;
@@ -17,7 +20,7 @@ export const Title = styled.Text`
   text-transform: uppercase;
 `;
 
-export const Developers = styled.FlatList`
+export const Developers = styled(FlatList<IDeveloper>)`
   margin-top: 30px;
   padding: 0px 20px;
   width: 100%;
