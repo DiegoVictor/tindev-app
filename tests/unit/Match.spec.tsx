@@ -2,11 +2,11 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 
 import factory from '../utils/factory';
-import Match from '~/components/Match';
+import { IDeveloper, Match } from '../../src/components/Match';
 
 describe('Match component', () => {
   it('should be able to see the match information', async () => {
-    const developer = await factory.attrs('Developer');
+    const developer = await factory.attrs<IDeveloper>('Developer');
 
     const { getByText, getByTestId } = render(
       <Match developer={developer} setDeveloper={jest.fn()} />
@@ -20,7 +20,7 @@ describe('Match component', () => {
   });
 
   it('should be able to close the match screen', async () => {
-    const developer = await factory.attrs('Developer');
+    const developer = await factory.attrs<IDeveloper>('Developer');
     const setDeveloper = jest.fn();
 
     const { getByTestId } = render(
