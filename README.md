@@ -3,7 +3,7 @@
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/DiegoVictor/tindev-app/config.yml?logo=github&style=flat-square)](https://github.com/DiegoVictor/tindev-app/actions)
 [![react-native](https://img.shields.io/badge/react--native-0.81.5-61dafb?style=flat-square&logo=react)](https://reactnative.dev/)
 [![styled-components](https://img.shields.io/badge/styled_components-6.1.19-db7b86?style=flat-square&logo=styled-components)](https://styled-components.com/)
-[![eslint](https://img.shields.io/badge/eslint-6.8.0-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
+[![eslint](https://img.shields.io/badge/eslint-9.39.2-4b32c3?style=flat-square&logo=eslint)](https://eslint.org/)
 [![jest](https://img.shields.io/badge/jest-30.2.0-brightgreen?style=flat-square&logo=jest)](https://jestjs.io/)
 [![expo](https://img.shields.io/badge/expo-54.0.29-000000?style=flat-square&logo=expo)](https://expo.io/)
 [![coverage](https://img.shields.io/codecov/c/gh/DiegoVictor/tindev-app?logo=codecov&style=flat-square)](https://codecov.io/gh/DiegoVictor/tindev-app)
