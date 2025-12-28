@@ -22,7 +22,7 @@ const mockSubscribe = jest.fn().mockImplementation((channel, callback) => {
 jest.mock('../../src/services/socket', () => {
   return {
     disconnect: () => mockDisconnect(),
-    connect: (data: Record<string, any>) => mockConnect(data),
+    connect: (data: Record<string, string>) => mockConnect(data),
     subscribe: (channel: string, callback: (developer: IDeveloper) => void) =>
       mockSubscribe(channel, callback),
   };
