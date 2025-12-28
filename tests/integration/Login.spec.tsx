@@ -16,7 +16,6 @@ describe('Login page', () => {
     const { getByTestId, getByPlaceholderText } = render(
       <UserContext.Provider
         value={{
-          user: {},
           setUser,
         }}
       >
